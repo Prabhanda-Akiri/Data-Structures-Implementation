@@ -63,8 +63,8 @@ class ParseTree:
 			return
 		else:
 			print(x.value)
-			self.postfix(x.left)
-			self.postfix(x.right)
+			self.prefix(x.left)
+			self.prefix(x.right)
 
 	def evaltree(self,x,s):
 			if x==None:
