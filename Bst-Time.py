@@ -56,14 +56,19 @@ class OrderedDict:
 
         temp=TreeNode()
         temp=self.root.next
+        temp1=temp
         while temp!=None:
 
             if x>temp.value:
+                temp1=temp
                 temp=temp.right
+
             elif x<temp.value:
+                temp1=temp
                 temp=temp.left
             elif x==temp.value:
                 return temp
+        return temp1
 
     def minimum(self,x):
 
@@ -115,27 +120,29 @@ class OrderedDict:
 
         if x.right==None and x.left==None:
 
-            if x.parent.right==x:
+            if x.parent!=None:
+                if x.parent.right==x:
 
-                x.parent.right=None
-            else:
-                x.parent.left=None
+                    x.parent.right=None
+                else:
+                    x.parent.left=None
 
         elif x.right==None or x.left==None:
 
-            if x.parent.right==x:
+            if x.parent!=None:
+                if x.parent.right==x:
 
-                if x.right==None:
-                    x.parent.right=x.left
-                else:
-                    x.parent.right=x.right
+                    if x.right==None:
+                        x.parent.right=x.left
+                    else:
+                        x.parent.right=x.right
 
-            if x.parent.left==x:
+                if x.parent.left==x:
 
-                if x.right==None:
-                    x.parent.left=x.left
-                else:
-                    x.parent.left=x.right
+                    if x.right==None:
+                        x.parent.left=x.left
+                    else:
+                        x.parent.left=x.right
         else:
 
             y=self.predecessor(x)
@@ -188,25 +195,15 @@ class BST:
 def main():
 
     b=BST()
-    b.ins('juggler')
-    b.ins('cartoon')
-    b.ins('basket')
-    b.ins('zoo')
-    b.ins('ink')
-    b.ins('honest')
-    b.ins('game')
-    print('after inserting')
-    b.printlist()
-    print('after deleting "basket"')
-    b.dele('basket')
-    b.printlist()
-    print('minimum is')
-    b.min()
-    print('maximum is')
-    b.max()
-
-
-
+    f=open("ispell.dict",'r')
+    for line in f :
+        r=f.readlines()
+    for i in range(20) : 
+        b.ins(r[i])
+    for i in range(20) :
+        b.sear(r[i])
+    for i in range(20):
+        b.dele(r[i])
 def key(s):
     k=0
     for i in range(len(s)):
