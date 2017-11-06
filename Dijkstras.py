@@ -48,13 +48,6 @@ class Dijkstras:
 					self.p[k].weight.append(L[i][j])
 
 
-		"""for i in range(len(self.p)):
-
-			print('\nVetex:',i)
-			print('Adjacent vertices:',self.p[i].list)
-			print('Weight of edges:',self.p[i].weight)"""
-
-
 	def shortestpath(self):
 
 		self.source.dist=0
@@ -76,16 +69,16 @@ class Dijkstras:
 
 			for i in range(len(v.list)):
 
-				if v.list[i].dist+v.weight[i]<v.dist:
+				if v.dist+v.weight[i]<v.list[i].dist:
 
 					k=v.dist
-					v.list[i].dist=v.list[i].dist+v.weight[i]
+					v.list[i].dist=v.dist+v.weight[i]
 
 					q.up(v.dist,k)
 
 		for i in range(len(self.p)):
 
-			print(self.p[i].dist)
+			print('shortest distance of the vertex ',i,'from source:',self.p[i].dist)
 
 def main():
 
@@ -229,7 +222,7 @@ class Heap:
 
 	def update(self,v,k):
 
-		for i in range(len(self.a)):
+		for i in range(1,len(self.a)):
 
 			if self.a[i].dist==k:
 
