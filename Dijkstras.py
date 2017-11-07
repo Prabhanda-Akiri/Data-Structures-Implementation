@@ -4,7 +4,6 @@ class GraphNode:
 
 		self.val=None
 		self.dist=999
-		self.adj=[]
 		self.list=[]
 		self.weight=[]
 
@@ -48,6 +47,30 @@ class Dijkstras:
 					self.p[k].weight.append(L[i][j])
 
 
+
+		for i in range(len(self.p)):
+
+			print('\nvertex',i,':')
+
+			print('adjacent vertices:',end=' ')
+
+			for j in range(len(self.p[i].list)):
+
+				print(self.p[i].list[j].val,end=' ')
+
+			print()
+
+			print('Their weights	:',end='')
+
+			for j in range(len(self.p[i].weight)):
+
+				print(self.p[i].weight[j],end=' ')
+
+			print()
+
+
+
+
 	def shortestpath(self):
 
 		self.source.dist=0
@@ -62,10 +85,11 @@ class Dijkstras:
 
 		while q.Qu.last!=0:
 
-			#q.printlist()
+			print('\nHeap before extracting vetex :')
+			q.printlist()
 			v=q.exmin()
 
-			print(v.val)
+			#print(v.val)
 
 			for i in range(len(v.list)):
 
@@ -76,6 +100,7 @@ class Dijkstras:
 
 					q.up(v.dist,k)
 
+		print('\nThe source vertex:	',self.source.val)
 		for i in range(len(self.p)):
 
 			print('shortest distance of the vertex ',i,'from source:',self.p[i].dist)
@@ -105,7 +130,7 @@ def adjacencylist(G,n):
 
 		l[2*(G[i][0])+1].append(G[i][2])
 
-	print(l)
+	#print(l)
 
 	return l
 
@@ -235,7 +260,9 @@ class Heap:
 
 	def list(self):
 
-		print(self.a[1:self.last+1])
+		for i in range(1,self.last+1):
+			print(self.a[i].dist,end=' ')
+		print()
 
 
 if __name__ == '__main__':
