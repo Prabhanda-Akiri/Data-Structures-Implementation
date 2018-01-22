@@ -5,9 +5,9 @@ def main():
     low=0
     high=7
 
-    print('Array before sorted:',A)
+    print('\n\nArray before sorting:\n','                ',A)
     mergesort(A,low,high)
-    print('\n\nArray after sorted:\n','                 ',A)
+    print('\n\nArray after sorting:\n','                 ',A,'\n')
 
 
 
@@ -15,13 +15,12 @@ def mergesort(A,low,high):
 
     if low<high:
 
-        mid=int((low+high-1)/2)
+        mid=int(low+(high-low)/2)
 
         mergesort(A,low,mid)
         mergesort(A,mid+1,high)
 
-        if(not high==low+1):
-            merge(A,low,mid,high)
+        merge(A,low,mid,high)
 
     return
 
